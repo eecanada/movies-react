@@ -22,6 +22,7 @@ const App = () => {
     }
   };
 
+  //set movies
   useEffect(() => {
     getMoviesRequest(searchTerm);
   }, [searchTerm]);
@@ -30,8 +31,14 @@ const App = () => {
     const movieFavorites = JSON.parse(
       localStorage.getItem('react-movie-app-favorites')
     );
-
     setLike(movieFavorites);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'react-movie-app-favorites',
+      JSON.stringify(getMovies())
+    );
   }, []);
 
   const saveToLocalStorage = (items) => {
@@ -68,7 +75,7 @@ const App = () => {
         />
       </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
-        <MovieListHeading heading="Favorites" />
+        <MovieListHeading heading="Eder's Favorites" />
       </div>
       <div className="row ">
         <MovieList
