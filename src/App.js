@@ -9,12 +9,14 @@ import './App.css';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('star wars');
+  const [searchTerm, setSearchTerm] = useState('');
   const [like, setLike] = useState([]);
 
   const getMoviesRequest = async () => {
     const API_KEY = process.env.REACT_APP_API_KEY;
-    const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY}`;
+    const url = `http://www.omdbapi.com/?s=${
+      searchTerm || 'star wars'
+    }&apikey=${API_KEY}`;
     const response = await fetch(url);
     const responseJSON = await response.json();
     if (responseJSON.Search) {
@@ -24,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     getMoviesRequest(searchTerm);
-   // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-line react-hooks/exhaustive-deps
   }, [searchTerm, movies]);
 
   useEffect(() => {
