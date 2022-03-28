@@ -22,9 +22,9 @@ const App = () => {
     }
   };
 
-  //set movies
   useEffect(() => {
     getMoviesRequest(searchTerm);
+    // eslint-disable-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const App = () => {
     console.log(movie, 'movie filter');
     const newFavoriteMovieList = [...like, movie];
     const filteredMovies = newFavoriteMovieList.filter(
-      (movieFromList) => movieFromList.imdbID != movie.imdbID
+      (movieFromList) => movieFromList.imdbID !== movie.imdbID
     );
     setLike(filteredMovies);
     saveToLocalStorage(filteredMovies);
