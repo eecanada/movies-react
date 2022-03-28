@@ -24,8 +24,8 @@ const App = () => {
 
   useEffect(() => {
     getMoviesRequest(searchTerm);
-    // eslint-disable-line react-hooks/exhaustive-deps
-  }, [searchTerm]);
+   // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchTerm, movies]);
 
   useEffect(() => {
     const movieFavorites = JSON.parse(
